@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class AboutmeActivity extends AppCompatActivity {
-    TextView fbTextView , telTextView;
+    TextView fbTextView, telTextView, eduTextView;
     Button backButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +19,7 @@ public class AboutmeActivity extends AppCompatActivity {
 
         fbTextView = findViewById(R.id.tv_fb);
         telTextView = findViewById(R.id.tv_tel);
+        eduTextView = findViewById(R.id.tv_edu);
         backButton = findViewById(R.id.button);
 
         fbTextView.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +29,7 @@ public class AboutmeActivity extends AppCompatActivity {
                 fbIntent.setData(Uri.parse("https://www.facebook.com/prayutofficial"));
                 startActivity(fbIntent);
             }
-        });
+        }); // end facebook onclick()
         telTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,14 +39,28 @@ public class AboutmeActivity extends AppCompatActivity {
                 startActivity(telIntent);
 
             }
-        });
+        }); // end tel onclick()
+
+        final Uri location = Uri.parse("http://maps.google.com/maps?z=10&q=loc:13.776965,100.510833('มหาวิทยาลัยสวนดุสิต')");
+
+        eduTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent eduIntent = new Intent(Intent.ACTION_VIEW, location);
+                eduIntent.setPackage("com.google.android.apps.maps");
+                startActivity(eduIntent);
+
+            }
+        }); // end education onclick()
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent backIntent = new Intent();
+                finish();
+
+
             }
-        });
+        }); //end back button onclick()
 
     } //end oncrete() method
 }//end class
